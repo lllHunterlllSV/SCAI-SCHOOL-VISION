@@ -1,0 +1,16 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      ENVIRONMENT: development
+      DATABASE_URL: sqlite+aiosqlite:////data/scai.db
+      TEST_VIDEO_PATH: /videos/TEST.mp4
+    volumes:
+      - scai_data:/data
+      - "C:/Users/edwin/Downloads/Zoom Class Meeting Downing Soc 220 1⁄28⁄2021:/videos:ro"
+    restart: unless-stopped
+
+volumes:
+  scai_data:

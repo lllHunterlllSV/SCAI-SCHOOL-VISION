@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+.venv-pycaret/
+.env
+*.db
+dist/
+.runtime/
+*.pt
+*.log
+
+# Material académico independiente del proyecto SCAI.
+feature_engineering_arabica/
+laboratorio_ia_etica/
+practica_redes_neuronales/

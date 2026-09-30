@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "scai-backend"
+version = "0.1.0"
+description = "Privacy-preserving Smart Classroom Attention Index API"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.34,<1",
+  "sqlalchemy[asyncio]>=2.0,<3",
+  "aiosqlite>=0.20,<1",
+  "pydantic-settings>=2.7,<3",
+  "PyJWT>=2.10,<3",
+]
+
+[project.optional-dependencies]
+dev = ["httpx>=0.28,<1", "pytest>=8.3,<9", "pytest-asyncio>=0.25,<1", "ruff>=0.9,<1"]
+openai = ["openai>=1.60,<2"]
+vision = [
+  "opencv-python>=4.10,<5",
+  "ultralytics>=8.3,<9",
+  "mediapipe==0.10.21",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+extend-ignore = [
+  "B008", # FastAPI's documented dependency-injection pattern uses Depends in defaults.
+  "BLE001", # The worker boundary must convert unexpected failures into session error state.
+]
